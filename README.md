@@ -137,6 +137,42 @@ cargo test -p polymarket-client --features websockets --test websocket_integrati
 
 User-channel subscriptions require `SecureClient::subscribe` with `SubscriptionSpec::User`.
 
+## Hybrid architecture (Solana UX, Polygon settlement)
+
+Polymarket settles on **Polygon** (USDC + CTF). This SDK does not run Solana programs — it is the **settlement adapter** for multi-chain products:
+
+```
+Solana app (wallet, UI, social)  →  your Rust backend  →  Polymarket APIs  →  Polygon
+```
+
+| Your front-end (e.g. Solana) | This SDK (Polygon / Polymarket) |
+|------------------------------|----------------------------------|
+| Custom UI, discovery, feeds | `list_markets`, `fetch_order_book`, websockets |
+| User identity on Solana | `SecureClient` + Polygon wallet for CLOB |
+| Your metadata / routing | Polymarket resolution + CTF redeem |
+
+**What you build:** auth mapping (Solana pubkey → permitted actions), USDC bridging, and custody policy. **What this SDK provides:** market data and order execution against Polymarket.
+
+Included reference server ([`examples/hybrid_server.rs`](examples/hybrid_server.rs)):
+
+```bash
+# Read-only (markets + order book)
+cargo run --example hybrid_server --features secure
+
+# Live order placement (demo — use small size, post-only)
+POLYMARKET_PRIVATE_KEY=0x… POLYMARKET_PLACE_ORDER=1 \
+  cargo run --example hybrid_server --features secure
+```
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /health` | Service status + Polygon wallet |
+| `GET /v1/markets?limit=5` | Open markets (Gamma) |
+| `GET /v1/book/{token_id}` | Order book (CLOB) |
+| `POST /v1/orders` | Place limit order (requires key + `POLYMARKET_PLACE_ORDER=1`) |
+
+Pass `X-Solana-Address` on order requests to correlate a Solana user with a Polygon fill (logging only in the example — add your own auth in production).
+
 ## Features
 
 | Area | Methods | Status |
@@ -146,6 +182,7 @@ User-channel subscriptions require `SecureClient::subscribe` with `SubscriptionS
 | Account data | `list_positions`, `fetch_portfolio_value`, `list_activity` | ✅ (`account` / `secure`) |
 | Trading / auth | `SecureClient`, orders, notifications, rewards, CTF | ✅ (`secure` feature) |
 | Realtime | `subscribe`, market/user/RTDS/sports streams | ✅ (`websockets` / `secure`) |
+| Hybrid adapter | `hybrid_server` example (HTTP → Polymarket) | ✅ |
 
 ## Architecture
 

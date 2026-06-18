@@ -46,6 +46,12 @@ rustls = { workspace = true, optional = true }
 [dev-dependencies]
 tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
 tracing-subscriber = "0.3"
+axum = { workspace = true }
+
+[[example]]
+name = "hybrid_server"
+path = "../../examples/hybrid_server.rs"
+required-features = ["secure"]
 
 [[example]]
 name = "quickstart"
