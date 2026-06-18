@@ -1,0 +1,85 @@
+[package]
+name = "polymarket-client"
+description = "Unified Polymarket Rust SDK — discovery, market data, and trading"
+readme = "README.md"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+publish = false
+
+[features]
+default = []
+account = ["dep:polymarket_client_sdk_v2"]
+secure = [
+    "account",
+    "websockets",
+    "dep:polymarket_client_sdk_v2",
+    "dep:alloy",
+    "dep:rust_decimal",
+    "dep:secrecy",
+    "dep:uuid",
+    "dep:chrono",
+]
+websockets = ["dep:polymarket_client_sdk_v2", "dep:tokio-tungstenite", "dep:rustls"]
+
+[dependencies]
+async-stream = { workspace = true }
+futures = { workspace = true }
+polymarket-bindings = { workspace = true }
+polymarket-types = { workspace = true }
+reqwest = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+url = { workspace = true }
+polymarket_client_sdk_v2 = { workspace = true, optional = true }
+alloy = { workspace = true, optional = true }
+rust_decimal = { workspace = true, optional = true }
+secrecy = { workspace = true, optional = true }
+uuid = { workspace = true, optional = true }
+chrono = { workspace = true, optional = true }
+tokio-tungstenite = { workspace = true, optional = true }
+rustls = { workspace = true, optional = true }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
+tracing-subscriber = "0.3"
+
+[[example]]
+name = "quickstart"
+path = "../../examples/quickstart.rs"
+
+[[example]]
+name = "trading"
+path = "../../examples/trading.rs"
+required-features = ["secure"]
+
+[[example]]
+name = "account"
+path = "../../examples/account.rs"
+required-features = ["secure"]
+
+[[example]]
+name = "websocket"
+path = "../../examples/websocket.rs"
+required-features = ["websockets"]
+
+[[test]]
+name = "account_integration"
+path = "tests/account_integration.rs"
+required-features = ["secure"]
+
+[[test]]
+name = "secure_integration"
+path = "tests/secure_integration.rs"
+required-features = ["secure"]
+
+[[test]]
+name = "websocket_integration"
+path = "tests/websocket_integration.rs"
+required-features = ["websockets"]
+
+[lints]
+workspace = true

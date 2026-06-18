@@ -1,0 +1,17 @@
+[package]
+name = "polymarket-bindings"
+description = "API bindings and normalized models for the Polymarket Rust SDK"
+readme = "README.md"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+polymarket-types = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+
+[lints]
+workspace = true

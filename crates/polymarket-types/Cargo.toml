@@ -1,0 +1,15 @@
+[package]
+name = "polymarket-types"
+description = "Shared primitives for the Polymarket Rust SDK"
+readme = "README.md"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+serde = { workspace = true }
+thiserror = { workspace = true }
+
+[lints]
+workspace = true

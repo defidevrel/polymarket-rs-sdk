@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Format
+        run: cargo fmt --all -- --check
+      - name: Clippy (default)
+        run: cargo clippy --all-targets -- -D warnings
+      - name: Clippy (secure)
+        run: cargo clippy -p polymarket-client --all-targets --features secure -- -D warnings
+      - name: Unit tests
+        run: cargo test
+      - name: Doc build
+        run: cargo doc -p polymarket-client --features secure --no-deps
+      - name: Build examples
+        run: |
+          cargo build --example quickstart
+          cargo build --example websocket --features websockets
+          cargo build --example account --features secure

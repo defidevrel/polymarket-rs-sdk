@@ -1,0 +1,61 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/polymarket-types",
+    "crates/polymarket-bindings",
+    "crates/polymarket-client",
+]
+default-members = ["crates/polymarket-client"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+license = "MIT"
+repository = "https://github.com/your-org/polymarket-rs-sdk"
+authors = ["Polymarket Rust SDK Contributors"]
+keywords = ["polymarket", "prediction-market", "trading", "api"]
+categories = ["api-bindings", "web-programming::http-client"]
+
+[workspace.dependencies]
+polymarket-types = { path = "crates/polymarket-types" }
+polymarket-bindings = { path = "crates/polymarket-bindings" }
+async-stream = "0.3"
+futures = "0.3"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+tracing = "0.1"
+url = "2"
+polymarket_client_sdk_v2 = { version = "=0.6.0-canary.1", default-features = false, features = ["clob", "data", "ctf", "ws", "rtds"] }
+tokio-tungstenite = { version = "0.26", default-features = false, features = ["connect", "rustls-tls-webpki-roots"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std"] }
+alloy = { version = "1.6", default-features = false, features = ["signers", "signer-local", "providers", "contract"] }
+rust_decimal = { version = "1", features = ["serde"] }
+secrecy = { version = "0.10", features = ["serde"] }
+uuid = { version = "1", features = ["serde", "v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+[workspace.lints.rust]
+unsafe_code = "deny"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+missing_errors_doc = "allow"
+module_name_repetitions = "allow"
+must_use_candidate = "allow"
+derive_partial_eq_without_eq = "allow"
+missing_panics_doc = "allow"
+doc_markdown = "allow"
+missing_const_for_fn = "allow"
+too_many_lines = "allow"
+cast_possible_truncation = "allow"
+cast_precision_loss = "allow"
+items_after_statements = "allow"
+needless_pass_by_value = "allow"
+redundant_clone = "allow"
+assigning_clones = "allow"
