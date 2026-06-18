@@ -23,10 +23,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         ..Default::default()
     })?;
     let page = markets.first_page().await?;
-    let market = page
-        .items
-        .first()
-        .ok_or("no open markets found")?;
+    let market = page.items.first().ok_or("no open markets found")?;
     let token_id = market
         .outcomes
         .yes
@@ -37,11 +34,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     println!("Subscribing to market stream for token {token_id}…\n");
 
-    let mut handle = client
-        .subscribe(vec![SubscriptionSpec::Market(MarketSubscription {
-            token_ids: vec![token_id],
-            custom_feature_enabled: false,
-        })])?;
+    let mut handle = client.subscribe(vec![SubscriptionSpec::Market(MarketSubscription {
+        token_ids: vec![token_id],
+        custom_feature_enabled: false,
+    })])?;
 
     match tokio::time::timeout(Duration::from_secs(30), handle.next()).await {
         Ok(Some(Ok(event))) => println!("{event:?}"),

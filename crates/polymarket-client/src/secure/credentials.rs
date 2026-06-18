@@ -14,7 +14,11 @@ pub struct ApiCredentials {
 }
 
 impl ApiCredentials {
-    pub fn new(key: impl Into<String>, secret: impl Into<String>, passphrase: impl Into<String>) -> Self {
+    pub fn new(
+        key: impl Into<String>,
+        secret: impl Into<String>,
+        passphrase: impl Into<String>,
+    ) -> Self {
         Self {
             key: key.into(),
             secret: SecretString::from(secret.into()),

@@ -1,8 +1,8 @@
 use std::ops::Deref;
 use std::str::FromStr as _;
 
-use alloy::signers::Signer as _;
 use alloy::signers::local::PrivateKeySigner;
+use alloy::signers::Signer as _;
 use chrono::{DateTime, Utc};
 use polymarket_bindings::OrderSide;
 use polymarket_client_sdk_v2::auth::state::Authenticated;
@@ -13,7 +13,7 @@ use polymarket_client_sdk_v2::clob::types::request::{
 use polymarket_client_sdk_v2::clob::types::response::{OpenOrderResponse, PostOrderResponse};
 use polymarket_client_sdk_v2::clob::types::{OrderType, Side, SignatureType};
 use polymarket_client_sdk_v2::clob::{Client as ClobClient, Config};
-use polymarket_client_sdk_v2::types::{Address, B256, Decimal, U256};
+use polymarket_client_sdk_v2::types::{Address, Decimal, B256, U256};
 use polymarket_client_sdk_v2::POLYGON;
 use rust_decimal::prelude::FromPrimitive as _;
 

@@ -37,7 +37,11 @@ struct OrderBookRaw {
     #[serde(rename = "tick_size", deserialize_with = "deserialize_decimalish")]
     tick_size: Option<String>,
     neg_risk: bool,
-    #[serde(rename = "last_trade_price", default, deserialize_with = "deserialize_decimalish")]
+    #[serde(
+        rename = "last_trade_price",
+        default,
+        deserialize_with = "deserialize_decimalish"
+    )]
     last_trade_price: Option<String>,
     hash: String,
 }

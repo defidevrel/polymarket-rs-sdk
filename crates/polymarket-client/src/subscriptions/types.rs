@@ -128,7 +128,8 @@ pub enum RtdsStreamEvent {
     },
 }
 
-pub(super) type EventStream = Pin<Box<dyn Stream<Item = Result<StreamEvent, SubscribeError>> + Send>>;
+pub(super) type EventStream =
+    Pin<Box<dyn Stream<Item = Result<StreamEvent, SubscribeError>> + Send>>;
 
 /// Handle for an active subscription (or merged subscriptions).
 pub struct SubscriptionHandle {
@@ -138,10 +139,7 @@ pub struct SubscriptionHandle {
 }
 
 impl SubscriptionHandle {
-    pub(crate) fn new(
-        stream: EventStream,
-        on_close: Option<Box<dyn FnOnce() + Send>>,
-    ) -> Self {
+    pub(crate) fn new(stream: EventStream, on_close: Option<Box<dyn FnOnce() + Send>>) -> Self {
         Self {
             stream,
             closed: Arc::new(AtomicBool::new(false)),

@@ -131,8 +131,7 @@ impl SecureClient {
             .await
             .map_err(|e| WalletOperationError::OnChain(e.to_string()))?;
 
-        CtfClient::new(provider, POLYGON)
-            .map_err(|e| WalletOperationError::OnChain(e.to_string()))
+        CtfClient::new(provider, POLYGON).map_err(|e| WalletOperationError::OnChain(e.to_string()))
     }
 }
 

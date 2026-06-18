@@ -15,8 +15,8 @@ pub use types::merge_streams;
 use std::str::FromStr as _;
 
 use futures::StreamExt as _;
-use polymarket_client_sdk_v2::clob::ws::Client as ClobWsClient;
 use polymarket_client_sdk_v2::clob::ws::types::response::WsMessage;
+use polymarket_client_sdk_v2::clob::ws::Client as ClobWsClient;
 use polymarket_client_sdk_v2::rtds::Client as RtdsClient;
 use polymarket_client_sdk_v2::types::{B256, U256};
 use polymarket_client_sdk_v2::ws::config::Config as WsConfig;
@@ -81,12 +81,8 @@ pub fn subscribe_one(
         SubscriptionSpec::Market(market) => subscribe_market(ws, market),
         SubscriptionSpec::Sports => subscribe_sports(ws),
         SubscriptionSpec::Comments(comments) => subscribe_comments(ws, comments),
-        SubscriptionSpec::CryptoPricesBinance(crypto) => {
-            subscribe_crypto_binance(ws, crypto)
-        }
-        SubscriptionSpec::CryptoPricesChainlink(crypto) => {
-            subscribe_crypto_chainlink(ws, crypto)
-        }
+        SubscriptionSpec::CryptoPricesBinance(crypto) => subscribe_crypto_binance(ws, crypto),
+        SubscriptionSpec::CryptoPricesChainlink(crypto) => subscribe_crypto_chainlink(ws, crypto),
         SubscriptionSpec::EquityPrices(equity) => subscribe_equity(ws, equity),
         SubscriptionSpec::User(_) => Err(SubscribeError::UserInput(user_input(
             "user subscriptions require SecureClient",
@@ -124,9 +120,7 @@ fn subscribe_market(
     ];
 
     if spec.custom_feature_enabled {
-        let bba = clob
-            .subscribe_best_bid_ask(asset_ids)
-            .map_err(map_ws_err)?;
+        let bba = clob.subscribe_best_bid_ask(asset_ids).map_err(map_ws_err)?;
         streams.push(Box::pin(bba.map(map_market_bba)));
     }
 
@@ -300,21 +294,19 @@ pub fn subscribe_user(
         spec.markets
             .iter()
             .map(|market| {
-                B256::from_str(market)
-                    .map_err(|e| SubscribeError::UserInput(user_input(format!("invalid market: {e}"))))
+                B256::from_str(market).map_err(|e| {
+                    SubscribeError::UserInput(user_input(format!("invalid market: {e}")))
+                })
             })
             .collect::<Result<Vec<_>, _>>()?
     };
 
-    let clob = ClobWsClient::new(&ws.clob_ws_url, WsConfig::default())
-        .map_err(map_ws_err)?;
+    let clob = ClobWsClient::new(&ws.clob_ws_url, WsConfig::default()).map_err(map_ws_err)?;
     let auth = clob
         .authenticate(credentials, address)
         .map_err(map_ws_err)?;
 
-    let stream = auth
-        .subscribe_user_events(markets)
-        .map_err(map_ws_err)?;
+    let stream = auth.subscribe_user_events(markets).map_err(map_ws_err)?;
 
     Ok(Box::pin(stream.filter_map(|result| async move {
         match result {
@@ -362,9 +354,10 @@ fn map_market_price(
     >,
 ) -> Result<StreamEvent, SubscribeError> {
     let change = result.map_err(map_ws_err)?;
-    let entry = change.price_changes.into_iter().next().ok_or_else(|| {
-        SubscribeError::Transport("price change event missing entries".into())
-    })?;
+    let entry =
+        change.price_changes.into_iter().next().ok_or_else(|| {
+            SubscribeError::Transport("price change event missing entries".into())
+        })?;
     Ok(StreamEvent::Market(MarketStreamEvent::PriceChange {
         token_id: entry.asset_id.to_string(),
         market: change.market.to_string(),
@@ -441,7 +434,10 @@ fn parse_sports_event(value: &serde_json::Value) -> Option<SportsStreamEvent> {
             .and_then(|v| v.as_str())
             .unwrap_or("")
             .to_string(),
-        live: value.get("live").and_then(serde_json::Value::as_bool).unwrap_or(false),
+        live: value
+            .get("live")
+            .and_then(serde_json::Value::as_bool)
+            .unwrap_or(false),
     })
 }
 

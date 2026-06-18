@@ -56,5 +56,8 @@ async fn market_channel_receives_event() {
 
     handle.close();
 
-    assert!(result.is_ok(), "timed out waiting for market websocket event");
+    assert!(
+        result.is_ok(),
+        "timed out waiting for market websocket event"
+    );
 }

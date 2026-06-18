@@ -10,9 +10,9 @@ use polymarket_client_sdk_v2::types::{Address, B256};
 
 #[cfg(feature = "account")]
 use crate::account::{
-    decode_offset_cursor, mappers, next_offset_cursor, validate_page_size, validate_user,
-    Activity, FetchPortfolioValueError, FetchPortfolioValueRequest, ListActivityError,
-    ListActivityRequest, ListPositionsError, ListPositionsRequest, PortfolioValue, Position,
+    decode_offset_cursor, mappers, next_offset_cursor, validate_page_size, validate_user, Activity,
+    FetchPortfolioValueError, FetchPortfolioValueRequest, ListActivityError, ListActivityRequest,
+    ListPositionsError, ListPositionsRequest, PortfolioValue, Position,
 };
 #[cfg(feature = "account")]
 use crate::error::user_input;
@@ -107,7 +107,10 @@ impl PublicClient {
             .await
             .map_err(|e| FetchPortfolioValueError::Data(e.to_string()))?;
 
-        Ok(values.into_iter().map(mappers::map_portfolio_value).collect())
+        Ok(values
+            .into_iter()
+            .map(mappers::map_portfolio_value)
+            .collect())
     }
 
     pub fn list_activity(

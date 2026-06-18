@@ -160,7 +160,9 @@ impl SecureClient {
         Ok(response.scoring)
     }
 
-    pub async fn list_current_rewards(&self) -> Result<Vec<CurrentReward>, ListCurrentRewardsError> {
+    pub async fn list_current_rewards(
+        &self,
+    ) -> Result<Vec<CurrentReward>, ListCurrentRewardsError> {
         let mut cursor = None;
         let mut all = Vec::new();
         loop {

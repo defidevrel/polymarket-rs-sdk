@@ -2,8 +2,8 @@
 
 #![deny(unsafe_code)]
 
-mod de;
 pub mod clob;
+mod de;
 pub mod gamma;
 pub mod shared;
 

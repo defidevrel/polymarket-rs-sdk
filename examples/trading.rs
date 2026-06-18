@@ -75,10 +75,7 @@ async fn sample_yes_token_id(client: &SecureClient) -> Result<String, Box<dyn st
         ..Default::default()
     })?;
     let page = markets.first_page().await?;
-    let market = page
-        .items
-        .first()
-        .ok_or("no open markets found")?;
+    let market = page.items.first().ok_or("no open markets found")?;
     market
         .outcomes
         .yes

@@ -138,23 +138,51 @@ pub struct GammaMarket {
     pub outcome_prices: Vec<String>,
     #[serde(default, deserialize_with = "deserialize_decimalish")]
     pub volume: Option<String>,
-    #[serde(default, rename = "volumeNum", deserialize_with = "deserialize_decimalish")]
+    #[serde(
+        default,
+        rename = "volumeNum",
+        deserialize_with = "deserialize_decimalish"
+    )]
     pub volume_num: Option<String>,
-    #[serde(default, rename = "volume24hr", deserialize_with = "deserialize_decimalish")]
+    #[serde(
+        default,
+        rename = "volume24hr",
+        deserialize_with = "deserialize_decimalish"
+    )]
     pub volume24hr: Option<String>,
     #[serde(default, deserialize_with = "deserialize_decimalish")]
     pub liquidity: Option<String>,
-    #[serde(default, rename = "liquidityNum", deserialize_with = "deserialize_decimalish")]
+    #[serde(
+        default,
+        rename = "liquidityNum",
+        deserialize_with = "deserialize_decimalish"
+    )]
     pub liquidity_num: Option<String>,
-    #[serde(default, rename = "bestBid", deserialize_with = "deserialize_decimalish")]
+    #[serde(
+        default,
+        rename = "bestBid",
+        deserialize_with = "deserialize_decimalish"
+    )]
     pub best_bid: Option<String>,
-    #[serde(default, rename = "bestAsk", deserialize_with = "deserialize_decimalish")]
+    #[serde(
+        default,
+        rename = "bestAsk",
+        deserialize_with = "deserialize_decimalish"
+    )]
     pub best_ask: Option<String>,
-    #[serde(default, rename = "lastTradePrice", deserialize_with = "deserialize_decimalish")]
+    #[serde(
+        default,
+        rename = "lastTradePrice",
+        deserialize_with = "deserialize_decimalish"
+    )]
     pub last_trade_price: Option<String>,
     #[serde(default, deserialize_with = "deserialize_decimalish")]
     pub spread: Option<String>,
-    #[serde(default, rename = "orderMinSize", deserialize_with = "deserialize_decimalish")]
+    #[serde(
+        default,
+        rename = "orderMinSize",
+        deserialize_with = "deserialize_decimalish"
+    )]
     pub order_min_size: Option<String>,
     #[serde(
         default,

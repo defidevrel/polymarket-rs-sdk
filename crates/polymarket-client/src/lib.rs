@@ -111,13 +111,14 @@ pub use polymarket_client_sdk_v2::PRIVATE_KEY_VAR;
 #[cfg(feature = "secure")]
 pub use secure::{
     AccountTrade, ApiCredentials, BuildSecureClientError, CancelMarketOrdersRequest,
-    CancelOrderError, CancelOrderRequest, CancelOrderResponse, CurrentReward, FetchNotificationsError,
-    FetchOrderError, FetchOrderRequest, FetchOrderScoringError, FetchOrderScoringRequest,
-    ListAccountTradesError, ListAccountTradesRequest, ListCurrentRewardsError, ListOpenOrdersError,
-    ListOpenOrdersRequest, MarketOrderType, MergePositionsRequest, Notification, OpenOrder,
-    PlaceLimitOrderRequest, PlaceMarketOrderRequest, PlaceOrderError, PlaceOrderResponse,
-    RedeemPositionsRequest, SecureClient, SecureClientBuilder, SetupTradingApprovalsError,
-    SplitPositionRequest, TransactionOutcome, WalletOperationError,
+    CancelOrderError, CancelOrderRequest, CancelOrderResponse, CurrentReward,
+    FetchNotificationsError, FetchOrderError, FetchOrderRequest, FetchOrderScoringError,
+    FetchOrderScoringRequest, ListAccountTradesError, ListAccountTradesRequest,
+    ListCurrentRewardsError, ListOpenOrdersError, ListOpenOrdersRequest, MarketOrderType,
+    MergePositionsRequest, Notification, OpenOrder, PlaceLimitOrderRequest,
+    PlaceMarketOrderRequest, PlaceOrderError, PlaceOrderResponse, RedeemPositionsRequest,
+    SecureClient, SecureClientBuilder, SetupTradingApprovalsError, SplitPositionRequest,
+    TransactionOutcome, WalletOperationError,
 };
 
 #[cfg(feature = "websockets")]

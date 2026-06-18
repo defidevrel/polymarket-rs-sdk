@@ -2,8 +2,8 @@
 
 use crate::secure::secure_client::SecureClient;
 use crate::subscriptions::{
-    merge_streams, subscribe_one, subscribe_user, SubscriptionHandle, SubscriptionSpec,
-    SubscribeError,
+    merge_streams, subscribe_one, subscribe_user, SubscribeError, SubscriptionHandle,
+    SubscriptionSpec,
 };
 
 impl SecureClient {
@@ -25,9 +25,9 @@ impl SecureClient {
             let stream = match spec {
                 SubscriptionSpec::User(user) => subscribe_user(
                     ws,
-                    self.credentials()
-                        .to_sdk_credentials()
-                        .map_err(|e| SubscribeError::Transport(format!("invalid credentials: {e}")))?,
+                    self.credentials().to_sdk_credentials().map_err(|e| {
+                        SubscribeError::Transport(format!("invalid credentials: {e}"))
+                    })?,
                     self.wallet(),
                     user,
                 )?,
