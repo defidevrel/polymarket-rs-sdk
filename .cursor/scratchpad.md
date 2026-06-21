@@ -185,6 +185,8 @@ polymarket-rs-sdk/
 
 **Phase 6 complete (2026-06-18):** CHANGELOG, expanded crate docs (`lib.rs` feature matrix), per-crate README stubs, CI hardened (secure clippy, doc build, example matrix). RFQ/combos deferred.
 
+**Mintlify docs (2026-06-21):** Live at https://polymarket-rs.mintlify.app. Source repo: [defidevrel/polymarket-rs-docs](https://github.com/defidevrel/polymarket-rs-docs) (`polymarket-sdk/*.mdx`, `docs.json`).
+
 **Phase 5 complete (2026-06-18):** `websockets` feature with unified `subscribe(specs) -> SubscriptionHandle` on `PublicClient` and `SecureClient` (user channel). Routes market (CLOB WS), sports (raw ping/pong), RTDS (comments, crypto binance/chainlink), and authenticated user events. Example: `examples/websocket.rs`. Live test: `tests/websocket_integration.rs` (passes).
 
 **Phase 4 complete (2026-06-18):** Data API account reads on `PublicClient` (`list_positions`, `fetch_portfolio_value`, `list_activity`). `SecureClient` adds wallet-default reads, `list_account_trades`, `fetch_notifications`, `fetch_order_scoring`, `list_current_rewards`, and on-chain CTF ops (`split_position`, `merge_positions`, `redeem_positions`). Example: `examples/account.rs`. Tests: `tests/account_integration.rs`.
@@ -202,3 +204,4 @@ All planned phases (0–6) implemented. Optional follow-ups: RFQ REST/WS, discov
 - No HTTP retries in core ServiceClient — don't add unless mirroring gasless later
 - Integration tests hit live APIs — no response mocking by default
 - WebSocket TLS requires a rustls crypto provider — `WebSocketClients::new` installs `ring` via `ensure_rustls_crypto_provider()`
+- **Detailed docs (Mintlify):** https://polymarket-rs.mintlify.app — edit [defidevrel/polymarket-rs-docs](https://github.com/defidevrel/polymarket-rs-docs). API reference stays on docs.rs.

@@ -2,7 +2,9 @@
 
 Unified Rust SDK for [Polymarket](https://polymarket.com), modeled after the official TypeScript SDK ([`@polymarket/client`](https://github.com/Polymarket/ts-sdk)).
 
-Built for production use: typed errors, input validation, HTTPS-only transport (`rustls`), request timeouts, and normalized domain models matching the TS SDK.
+Built for production use: typed errors, input validation, HTTPS-only transport (`rustls`), request timeouts, and normalized domain models.
+
+**Full documentation:** [polymarket-rs.mintlify.app](https://polymarket-rs.mintlify.app/) · [docs.rs](https://docs.rs/polymarket-client/latest/polymarket_client/) · [GitHub](https://github.com/defidevrel/polymarket-rs-sdk) · [Docs repo](https://github.com/defidevrel/polymarket-rs-docs)
 
 ## Quickstart
 
@@ -252,7 +254,7 @@ MIT — same as the [Polymarket TypeScript SDK](https://github.com/Polymarket/ts
 polymarket-client = "0.1"
 ```
 
-Docs: [docs.rs/polymarket_client](https://docs.rs/polymarket-client/latest/polymarket_client/) · Repo: [github.com/defidevrel/polymarket-rs-sdk](https://github.com/defidevrel/polymarket-rs-sdk)
+**Guides:** [Mintlify docs](https://polymarket-rs.mintlify.app/) · [docs.rs/polymarket_client](https://docs.rs/polymarket-client/latest/polymarket_client/) · [GitHub](https://github.com/defidevrel/polymarket-rs-sdk)
 
 ## Related
 
