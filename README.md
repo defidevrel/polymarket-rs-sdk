@@ -1,6 +1,6 @@
 # Polymarket Rust SDK
 
-Unified Rust SDK for [Polymarket](https://polymarket.com), modeled after the official TypeScript SDK ([`@polymarket/client`](https://github.com/Polymarket/ts-sdk)).
+Unified Rust SDK for [Polymarket](https://polymarket.com) prediction markets.
 
 Built for production use: typed errors, input validation, HTTPS-only transport (`rustls`), request timeouts, and normalized domain models.
 
@@ -200,7 +200,7 @@ Pass `X-Solana-Address` on order requests to correlate a Solana user with a Poly
 
 ## Architecture
 
-Three crates mirror the [TypeScript monorepo](https://github.com/Polymarket/ts-sdk):
+Three crates, layered by concern:
 
 - **`polymarket-types`** — Branded IDs (`MarketId`, `TokenId`), addresses, validation
 - **`polymarket-bindings`** — API deserialization + normalization (Gamma → `Market`, CLOB → `OrderBook`)
@@ -208,7 +208,7 @@ Three crates mirror the [TypeScript monorepo](https://github.com/Polymarket/ts-s
 
 ## Error handling
 
-Each action returns typed errors with guards matching the TS SDK:
+Each action returns typed errors with guard helpers:
 
 ```rust
 use polymarket_client::{ListMarketsError, PublicClient};
@@ -246,7 +246,7 @@ See [SECURITY.md](SECURITY.md). Summary:
 
 ## License
 
-MIT — same as the [Polymarket TypeScript SDK](https://github.com/Polymarket/ts-sdk).
+MIT — see [LICENSE](LICENSE).
 
 ## Install from crates.io
 
@@ -258,9 +258,8 @@ polymarket-client = "0.1"
 
 ## Related
 
-- [Polymarket TypeScript SDK](https://github.com/Polymarket/ts-sdk)
-- [Polymarket docs](https://docs.polymarket.com/dev-tooling/typescript)
-- [Official Rust CLOB client](https://github.com/Polymarket/rs-clob-client-v2) (CLOB-only; this SDK targets the unified surface)
+- [Polymarket developer docs](https://docs.polymarket.com/)
+- [Official Rust CLOB client](https://github.com/Polymarket/rs-clob-client-v2) (CLOB-only; lower-level than this SDK)
 - [CHANGELOG.md](CHANGELOG.md)
 
 ## API documentation
