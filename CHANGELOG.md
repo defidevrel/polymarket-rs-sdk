@@ -9,6 +9,12 @@ This Rust SDK tracks the unified surface of the official [Polymarket TypeScript 
 - crates.io publish metadata; examples moved into `crates/polymarket-client/examples/`
 - Hybrid architecture docs and `hybrid_server` example — HTTP adapter for Solana (or any) front-end → Polymarket settlement on Polygon
 
+## [0.1.1] - 2026-06-21
+
+### Fixed
+
+- docs.rs builds with `all-features` so `SecureClient`, websockets, and account APIs appear in the online docs
+
 ## [0.1.0] - 2026-06-18
 
 ### Added

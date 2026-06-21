@@ -252,7 +252,7 @@ MIT — same as the [Polymarket TypeScript SDK](https://github.com/Polymarket/ts
 polymarket-client = "0.1"
 ```
 
-Docs: [docs.rs/polymarket-client](https://docs.rs/polymarket-client) · Repo: [github.com/defidevrel/polymarket-rs-sdk](https://github.com/defidevrel/polymarket-rs-sdk)
+Docs: [docs.rs/polymarket_client](https://docs.rs/polymarket-client/latest/polymarket_client/) · Repo: [github.com/defidevrel/polymarket-rs-sdk](https://github.com/defidevrel/polymarket-rs-sdk)
 
 ## Related
 
@@ -268,3 +268,5 @@ Generate local docs (includes `secure` and `websockets` APIs):
 ```bash
 cargo doc -p polymarket-client --features secure --no-deps --open
 ```
+
+Published API reference: https://docs.rs/polymarket-client/latest/polymarket_client/

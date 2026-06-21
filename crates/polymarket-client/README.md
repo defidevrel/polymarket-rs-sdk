@@ -55,4 +55,4 @@ cargo run --example quickstart
 cargo run --example hybrid_server --features secure
 ```
 
-Full documentation: [GitHub](https://github.com/defidevrel/polymarket-rs-sdk) · [docs.rs](https://docs.rs/polymarket-client)
+Full documentation: [GitHub](https://github.com/defidevrel/polymarket-rs-sdk) · [docs.rs](https://docs.rs/polymarket-client/latest/polymarket_client/)

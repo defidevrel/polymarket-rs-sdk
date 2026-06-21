@@ -13,6 +13,9 @@ categories.workspace = true
 rust-version.workspace = true
 include = ["src/**/*", "Cargo.toml", "README.md", "LICENSE", "examples/**/*", "tests/**/*"]
 
+[package.metadata.docs.rs]
+all-features = true
+
 [features]
 default = []
 account = ["dep:polymarket_client_sdk_v2"]
