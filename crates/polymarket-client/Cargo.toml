@@ -1,11 +1,17 @@
 [package]
 name = "polymarket-client"
-description = "Unified Polymarket Rust SDK — discovery, market data, and trading"
+description = "Unified Polymarket Rust SDK — discovery, market data, trading, and websockets"
 readme = "README.md"
 edition.workspace = true
 version.workspace = true
 license.workspace = true
-publish = false
+repository.workspace = true
+homepage.workspace = true
+documentation.workspace = true
+keywords.workspace = true
+categories.workspace = true
+rust-version.workspace = true
+include = ["src/**/*", "Cargo.toml", "README.md", "LICENSE", "examples/**/*", "tests/**/*"]
 
 [features]
 default = []
@@ -50,26 +56,26 @@ axum = { workspace = true }
 
 [[example]]
 name = "hybrid_server"
-path = "../../examples/hybrid_server.rs"
+path = "examples/hybrid_server.rs"
 required-features = ["secure"]
 
 [[example]]
 name = "quickstart"
-path = "../../examples/quickstart.rs"
+path = "examples/quickstart.rs"
 
 [[example]]
 name = "trading"
-path = "../../examples/trading.rs"
+path = "examples/trading.rs"
 required-features = ["secure"]
 
 [[example]]
 name = "account"
-path = "../../examples/account.rs"
+path = "examples/account.rs"
 required-features = ["secure"]
 
 [[example]]
 name = "websocket"
-path = "../../examples/websocket.rs"
+path = "examples/websocket.rs"
 required-features = ["websockets"]
 
 [[test]]

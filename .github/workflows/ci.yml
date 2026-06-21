@@ -30,7 +30,7 @@ jobs:
         run: cargo doc -p polymarket-client --features secure --no-deps
       - name: Build examples
         run: |
-          cargo build --example quickstart
-          cargo build --example websocket --features websockets
-          cargo build --example account --features secure
-          cargo build --example hybrid_server --features secure
+          cargo build -p polymarket-client --example quickstart
+          cargo build -p polymarket-client --example websocket --features websockets
+          cargo build -p polymarket-client --example account --features secure
+          cargo build -p polymarket-client --example hybrid_server --features secure

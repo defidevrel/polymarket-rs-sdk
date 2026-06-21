@@ -13,13 +13,16 @@ edition = "2021"
 rust-version = "1.88"
 license = "MIT"
 repository = "https://github.com/defidevrel/polymarket-rs-sdk"
-authors = ["Polymarket Rust SDK Contributors"]
+homepage = "https://github.com/defidevrel/polymarket-rs-sdk"
+documentation = "https://docs.rs/polymarket-client"
+authors = ["defidevrel"]
+description = "Polymarket Rust SDK workspace"
 keywords = ["polymarket", "prediction-market", "trading", "api"]
 categories = ["api-bindings", "web-programming::http-client"]
 
 [workspace.dependencies]
-polymarket-types = { path = "crates/polymarket-types" }
-polymarket-bindings = { path = "crates/polymarket-bindings" }
+polymarket-types = { version = "0.1.0", path = "crates/polymarket-types" }
+polymarket-bindings = { version = "0.1.0", path = "crates/polymarket-bindings" }
 async-stream = "0.3"
 futures = "0.3"
 reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }

@@ -9,8 +9,20 @@ Built for production use: typed errors, input validation, HTTPS-only transport (
 Add to your `Cargo.toml`:
 
 ```toml
-polymarket-client = { path = "crates/polymarket-client" }
+polymarket-client = "0.1"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+```
+
+For trading and websockets:
+
+```toml
+polymarket-client = { version = "0.1", features = ["secure"] }
+```
+
+**From this repo (development):**
+
+```toml
+polymarket-client = { path = "crates/polymarket-client" }
 ```
 
 ```rust
@@ -42,7 +54,7 @@ async fn main() -> Result<(), polymarket_client::Error> {
 Run the included example:
 
 ```bash
-cargo run --example quickstart
+cargo run -p polymarket-client --example quickstart
 ```
 
 ## Secure client (trading)
@@ -83,7 +95,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 Trading example (lists open orders; set `POLYMARKET_PLACE_ORDER=1` to place a demo order):
 
 ```bash
-POLYMARKET_PRIVATE_KEY=0x… cargo run --example trading --features secure
+POLYMARKET_PRIVATE_KEY=0x… cargo run -p polymarket-client --example trading --features secure
 ```
 
 Secure integration tests:
@@ -95,7 +107,7 @@ POLYMARKET_PRIVATE_KEY=0x… cargo test -p polymarket-client --features secure -
 Account data (public read, no key required):
 
 ```bash
-cargo run --example account --features secure
+cargo run -p polymarket-client --example account --features secure
 cargo test -p polymarket-client --features secure --test account_integration -- --ignored --nocapture
 ```
 
@@ -131,7 +143,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 ```
 
 ```bash
-cargo run --example websocket --features websockets
+cargo run -p polymarket-client --example websocket --features websockets
 cargo test -p polymarket-client --features websockets --test websocket_integration -- --ignored --nocapture
 ```
 
@@ -153,15 +165,15 @@ Solana app (wallet, UI, social)  →  your Rust backend  →  Polymarket APIs  �
 
 **What you build:** auth mapping (Solana pubkey → permitted actions), USDC bridging, and custody policy. **What this SDK provides:** market data and order execution against Polymarket.
 
-Included reference server ([`examples/hybrid_server.rs`](examples/hybrid_server.rs)):
+Included reference server ([`crates/polymarket-client/examples/hybrid_server.rs`](crates/polymarket-client/examples/hybrid_server.rs)):
 
 ```bash
 # Read-only (markets + order book)
-cargo run --example hybrid_server --features secure
+cargo run -p polymarket-client --example hybrid_server --features secure
 
 # Live order placement (demo — use small size, post-only)
 POLYMARKET_PRIVATE_KEY=0x… POLYMARKET_PLACE_ORDER=1 \
-  cargo run --example hybrid_server --features secure
+  cargo run -p polymarket-client --example hybrid_server --features secure
 ```
 
 | Endpoint | Description |
@@ -233,6 +245,14 @@ See [SECURITY.md](SECURITY.md). Summary:
 ## License
 
 MIT — same as the [Polymarket TypeScript SDK](https://github.com/Polymarket/ts-sdk).
+
+## Install from crates.io
+
+```toml
+polymarket-client = "0.1"
+```
+
+Docs: [docs.rs/polymarket-client](https://docs.rs/polymarket-client) · Repo: [github.com/defidevrel/polymarket-rs-sdk](https://github.com/defidevrel/polymarket-rs-sdk)
 
 ## Related
 
