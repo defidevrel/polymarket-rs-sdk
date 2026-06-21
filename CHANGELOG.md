@@ -2,12 +2,16 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-This Rust SDK tracks the unified surface of the official [Polymarket TypeScript SDK](https://github.com/Polymarket/ts-sdk) (`@polymarket/client`).
-
 ### Added (unreleased)
 
 - crates.io publish metadata; examples moved into `crates/polymarket-client/examples/`
 - Hybrid architecture docs and `hybrid_server` example — HTTP adapter for Solana (or any) front-end → Polymarket settlement on Polygon
+
+## [0.1.2] - 2026-06-21
+
+### Changed
+
+- README and crate docs no longer reference the TypeScript SDK
 
 ## [0.1.1] - 2026-06-21
 
@@ -35,7 +39,7 @@ This Rust SDK tracks the unified surface of the official [Polymarket TypeScript 
 - Realtime streams (`websockets` / `secure` features)
   - Unified `subscribe()` with market, user, sports, RTDS channels
   - `SubscriptionHandle` with idempotent `close()`
-- Typed errors per action with TS-style guards
+- Typed errors per action with guard helpers
 - Examples: `quickstart`, `trading`, `account`, `websocket`, `hybrid_server`
 - Live integration tests (opt-in via `#[ignore]`)
 - CI: fmt, clippy, unit tests, doc build

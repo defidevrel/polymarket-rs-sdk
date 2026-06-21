@@ -1,6 +1,4 @@
-//! Unified Polymarket Rust SDK.
-//!
-//! Modeled after the official TypeScript SDK ([`@polymarket/client`](https://github.com/Polymarket/ts-sdk)).
+//! Unified Polymarket Rust SDK for prediction markets on Polygon.
 //!
 //! # Clients
 //!
